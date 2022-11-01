@@ -18,7 +18,7 @@ total_scans = len(divert_truth_list)
 looping_counters = {}
 
 # read the map of the system
-img = cv2.imread("test_map.png", cv2.IMREAD_COLOR)
+img = cv2.imread("ottawa_aeo_map.png", cv2.IMREAD_COLOR)
 
 # Adding title to the image
 
@@ -35,7 +35,7 @@ cv2.putText(img, "Tote : " + str(tote_name), (520, 30),
 # frame size is WIDTH, HEIGHT
 FRAME_SIZE = (img.shape[1], img.shape[0])
 video_output = cv2.VideoWriter(
-    str(tote_name) + '_tote_traversal.mp4', VIDEO_FORMAT, FRAME_RATE,
+    'videos/' + str(tote_name) + '_tote_traversal.mp4', VIDEO_FORMAT, FRAME_RATE,
     FRAME_SIZE)
 
 # will be iterated after getting data from the find_time_delta func
@@ -164,7 +164,7 @@ for idx in range(total_scans):
 
         img = cv2.circle(img,
                          station_coordinates[divert_name],
-                         radius=CIRCLE_RAD_SMALL,
+                         radius=CIRCLE_RAD_MEDIUM,
                          color=COLOR_GREEN,
                          thickness=-1)
         cv2.imshow("Station Map", img)
