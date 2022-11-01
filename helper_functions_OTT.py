@@ -139,8 +139,11 @@ def find_time_spent(raw_data):
 		print('Total time spent by tote in the system: ', time_minutes[0] / 60,
 			  ' hours')
 	else:
+
+		time_seconds = float('{:.2f}'.format(time_minutes[1]))
+
 		print('Total time spent by tote in the system: ', time_minutes[0],
-			  'minutes', time_minutes[1], 'seconds')
+			  'minutes', time_seconds, 'seconds')
 
 
 def print_summary(summary_dictionary):
