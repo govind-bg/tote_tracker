@@ -20,3 +20,4 @@ The code tracks a tote in the system and saves the video
 
     OpenCV - pip3 install opencv-python
     datetime
+    Pandas

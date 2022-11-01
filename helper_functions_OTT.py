@@ -1,4 +1,3 @@
-import matplotlib as plt
 import cv2
 import time
 import sys
