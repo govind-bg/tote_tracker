@@ -3,6 +3,9 @@ from helper_functions_OTT import *
 # read the raw data from kibana (exported in CSV format)
 data = read_csv("raw_file.csv")
 
+# extracting the time column
+time_stamps = data["@timestamp"].tolist()
+time_stamps.reverse()
 
 positions_list = prepare_positions_list(data)
 divert_truth_list = prepare_divert_truth(data)
@@ -22,158 +25,176 @@ img = cv2.imread("test_map.png", cv2.IMREAD_COLOR)
 # get tote name
 tote_name = get_tote_number(data)
 # Draw TITLE rectangle - Trial and error method to get rectangle coordinates
-img = cv2.rectangle(img, (510,0), (880,40),COLOR_BLACK, -1)
+img = cv2.rectangle(img, (510, 0), (880, 40), COLOR_BLACK, -1)
 # adding the text to the TITLE  - Trial and error method to get rectangle coordinates
-cv2.putText(img, "Tote : " + str(tote_name),(520,30),cv2.FONT_HERSHEY_SIMPLEX, TEXT_FONT_SIZE, COLOR_WHITE, TEXT_FONT_THICKNESS)
+cv2.putText(img, "Tote : " + str(tote_name), (520, 30),
+            cv2.FONT_HERSHEY_SIMPLEX, TEXT_FONT_SIZE, COLOR_WHITE,
+            TEXT_FONT_THICKNESS)
 
 # choose codec according to format needed
 # frame size is WIDTH, HEIGHT
 FRAME_SIZE = (img.shape[1], img.shape[0])
-video_output = cv2.VideoWriter(str(tote_name)+'_tote_traversal.mp4',VIDEO_FORMAT, FRAME_RATE, FRAME_SIZE)
+video_output = cv2.VideoWriter(
+    str(tote_name) + '_tote_traversal.mp4', VIDEO_FORMAT, FRAME_RATE,
+    FRAME_SIZE)
+
+# will be iterated after getting data from the find_time_delta func
+
+time_counter = 0.0
 
 for idx in range(total_scans):
 
-	# Checking for the name of the divert and if the divert was TRUE/FALSE
+    # Checking for the name of the divert and if the divert was TRUE/FALSE
 
-	divert_name = positions_list[idx]
-	divert_truth = divert_truth_list[idx]
-	# Updating dictionary values to have a good data
-	# of everything
+    divert_name = positions_list[idx]
+    divert_truth = divert_truth_list[idx]
+    # Updating dictionary values to have a good data
+    # of everything
 
-	if divert_name not in looping_counters:
-		looping_counters[divert_name] = {}
-		looping_counters[divert_name]['instances_visitied'] = 1
-		if divert_truth == 'True':
-			print('tote divert requested to: ', divert_name)
-			looping_counters[divert_name]['diverted'] = 1
+    if divert_name not in looping_counters:
+        looping_counters[divert_name] = {}
+        looping_counters[divert_name]['instances_visitied'] = 1
+        if divert_truth == 'True':
+            print('tote divert requested to: ', divert_name)
+            looping_counters[divert_name]['diverted'] = 1
 
-			# Draw filled rectangles to display the station divert TRUE Score
+            # Draw filled rectangles to display the station divert TRUE Score
 
+            # get station position coordinates
+            x_1 = box_position_coordinates[divert_name][0]
+            x_2 = box_position_coordinates[divert_name][2]
 
-			# get station position coordinates
-			x_1 = box_position_coordinates[divert_name][0]
-			x_2 = box_position_coordinates[divert_name][2]
+            y_1 = box_position_coordinates[divert_name][1]
+            y_2 = box_position_coordinates[divert_name][3]
 
-			y_1 = box_position_coordinates[divert_name][1]
-			y_2 = box_position_coordinates[divert_name][3]
+            # Adding offset to station coords to display the rectangle
+            rectangle_corner_1 = (station_coordinates[divert_name][0] + x_1,
+                                  station_coordinates[divert_name][1] + y_1)
+            rectangle_corner_2 = (station_coordinates[divert_name][0] + x_2,
+                                  station_coordinates[divert_name][1] + y_2)
 
-			# Adding offset to station coords to display the rectangle
-			rectangle_corner_1 = (station_coordinates[divert_name][0] + x_1,
-								  station_coordinates[divert_name][1] + y_1)
-			rectangle_corner_2 = (station_coordinates[divert_name][0] + x_2,
-								  station_coordinates[divert_name][1] + y_2)
+            # Draw a rectangle
+            img = cv2.rectangle(img, rectangle_corner_1, rectangle_corner_2,
+                                COLOR_DARK_GREEN, -1)
 
-			# Draw a rectangle
-			img = cv2.rectangle(img, rectangle_corner_1, rectangle_corner_2,
-								COLOR_DARK_GREEN, -1)
+            # Text coordinates
 
-			# Text coordinates
+            text_corner_x = int(
+                (station_coordinates[divert_name][0] + x_1 +
+                 station_coordinates[divert_name][0] + x_2) / 2)
+            text_corner_y = int(
+                (station_coordinates[divert_name][1] + y_1 +
+                 station_coordinates[divert_name][1] + y_2) / 2)
 
-			text_corner_x = int(
-				(station_coordinates[divert_name][0] + x_1 +
-				 station_coordinates[divert_name][0] + x_2) / 2)
-			text_corner_y = int(
-				(station_coordinates[divert_name][1] + y_1 +
-				 station_coordinates[divert_name][1] + y_2) / 2)
-			
+            # added as a manual param to center the text in the rectangle
+            text_offset = 20
 
-			# added as a manual param to center the text in the rectangle
-			text_offset = 20 
+            # adding the text to the rectangle
+            cv2.putText(
+                img, str(looping_counters[divert_name]['diverted']),
+                (text_corner_x - text_offset, text_corner_y + text_offset),
+                cv2.FONT_HERSHEY_SIMPLEX, TEXT_FONT_SIZE, COLOR_BLACK,
+                TEXT_FONT_THICKNESS)
 
-			# adding the text to the rectangle 
-			cv2.putText(
-				img, str(looping_counters[divert_name]['diverted']),
-				(text_corner_x - text_offset, text_corner_y + text_offset),
-				cv2.FONT_HERSHEY_SIMPLEX, TEXT_FONT_SIZE, COLOR_BLACK, TEXT_FONT_THICKNESS)
+        elif divert_truth == 'False':
+            looping_counters[divert_name]['diverted'] = 0
 
-		elif divert_truth == 'False':
-			looping_counters[divert_name]['diverted'] = 0
+    else:
+        looping_counters[divert_name]['instances_visitied'] += 1
+        if divert_truth == 'True':
+            print('tote divert requested AGAIN to: ', divert_name)
 
-	else:
-		looping_counters[divert_name]['instances_visitied'] += 1
-		if divert_truth == 'True':
-			print('tote divert requested AGAIN to: ', divert_name)
+            # this new updated value will now go inside the rectangle
 
-			# this new updated value will now go inside the rectangle
+            looping_counters[divert_name]['diverted'] += 1
 
-			looping_counters[divert_name]['diverted'] += 1
+            # Draw filled rectangles to display the station divert TRUE Score
 
-			# Draw filled rectangles to display the station divert TRUE Score
+            # get station position coordinates
+            x_1 = box_position_coordinates[divert_name][0]
+            x_2 = box_position_coordinates[divert_name][2]
 
-			# get station position coordinates
-			x_1 = box_position_coordinates[divert_name][0]
-			x_2 = box_position_coordinates[divert_name][2]
+            y_1 = box_position_coordinates[divert_name][1]
+            y_2 = box_position_coordinates[divert_name][3]
 
-			y_1 = box_position_coordinates[divert_name][1]
-			y_2 = box_position_coordinates[divert_name][3]
+            # Adding offset to station coords to display the rectangle
+            rectangle_corner_1 = (station_coordinates[divert_name][0] + x_1,
+                                  station_coordinates[divert_name][1] + y_1)
+            rectangle_corner_2 = (station_coordinates[divert_name][0] + x_2,
+                                  station_coordinates[divert_name][1] + y_2)
 
-			# Adding offset to station coords to display the rectangle
-			rectangle_corner_1 = (station_coordinates[divert_name][0] + x_1,
-								  station_coordinates[divert_name][1] + y_1)
-			rectangle_corner_2 = (station_coordinates[divert_name][0] + x_2,
-								  station_coordinates[divert_name][1] + y_2)
+            # Draw a rectangle
+            img = cv2.rectangle(img, rectangle_corner_1, rectangle_corner_2,
+                                COLOR_DARK_GREEN, -1)
 
-			# Draw a rectangle
-			img = cv2.rectangle(img, rectangle_corner_1, rectangle_corner_2,
-								COLOR_DARK_GREEN, -1)
+            # Text coordinates
 
-			# Text coordinates
+            text_corner_x = int(
+                (station_coordinates[divert_name][0] + x_1 +
+                 station_coordinates[divert_name][0] + x_2) / 2)
+            text_corner_y = int(
+                (station_coordinates[divert_name][1] + y_1 +
+                 station_coordinates[divert_name][1] + y_2) / 2)
 
-			text_corner_x = int(
-				(station_coordinates[divert_name][0] + x_1 +
-				 station_coordinates[divert_name][0] + x_2) / 2)
-			text_corner_y = int(
-				(station_coordinates[divert_name][1] + y_1 +
-				 station_coordinates[divert_name][1] + y_2) / 2)
-			
-			# added as a manual param to center the text in the rectangle
-			text_offset = 20 
+            # added as a manual param to center the text in the rectangle
+            text_offset = 20
 
-			# adding the text to the rectangle 
-			cv2.putText(
-				img, str(looping_counters[divert_name]['diverted']),
-				(text_corner_x - text_offset, text_corner_y + text_offset),
-				cv2.FONT_HERSHEY_SIMPLEX, TEXT_FONT_SIZE, COLOR_BLACK, TEXT_FONT_THICKNESS)
+            # adding the text to the rectangle
+            cv2.putText(
+                img, str(looping_counters[divert_name]['diverted']),
+                (text_corner_x - text_offset, text_corner_y + text_offset),
+                cv2.FONT_HERSHEY_SIMPLEX, TEXT_FONT_SIZE, COLOR_BLACK,
+                TEXT_FONT_THICKNESS)
 
-	# change color of the circle based on divert truth.
-	# if divert == true, circle color == green
-	# if divert == false, circle color == red
+    # change color of the circle based on divert truth.
+    # if divert == true, circle color == green
+    # if divert == false, circle color == red
 
-	if divert_truth == 'False':
+    if divert_truth == 'False':
 
-		img = cv2.circle(img,
-						 station_coordinates[divert_name],
-						 radius=CIRCLE_RAD_SMALL,
-						 color=COLOR_RED,
-						 thickness=-1)
-		cv2.imshow("Station Map", img)
-		cv2.waitKey(WAIT_KEY_PARAM)
+        img = cv2.circle(img,
+                         station_coordinates[divert_name],
+                         radius=CIRCLE_RAD_SMALL,
+                         color=COLOR_RED,
+                         thickness=-1)
+        cv2.imshow("Station Map", img)
+        cv2.waitKey(WAIT_KEY_PARAM)
 
-	else:
+    else:
 
-		img = cv2.circle(img,
-						 station_coordinates[divert_name],
-						 radius=CIRCLE_RAD_SMALL,
-						 color=COLOR_GREEN,
-						 thickness=-1)
-		cv2.imshow("Station Map", img)
-		cv2.waitKey(WAIT_KEY_PARAM)
+        img = cv2.circle(img,
+                         station_coordinates[divert_name],
+                         radius=CIRCLE_RAD_SMALL,
+                         color=COLOR_GREEN,
+                         thickness=-1)
+        cv2.imshow("Station Map", img)
+        cv2.waitKey(WAIT_KEY_PARAM)
 
-	# saving the video output here so that the circle colors show up
+    # saving the video output here so that the circle colors show up
 
-	video_output.write(img)
-	
-	# resetting back to black circle
+    video_output.write(img)
 
-	img = cv2.circle(img,
-					 station_coordinates[divert_name],
-					 radius=CIRCLE_RAD_BIG,
-					 color=COLOR_BLACK,
-					 thickness=-1)
+    # resetting back to black circle
 
-	cv2.imshow("Station Map", img)
-	cv2.waitKey(WAIT_KEY_PARAM)
-	
+    img = cv2.circle(img,
+                     station_coordinates[divert_name],
+                     radius=CIRCLE_RAD_BIG,
+                     color=COLOR_BLACK,
+                     thickness=-1)
+
+    # to display live time spent in the system
+    img = cv2.rectangle(img, (1150, 0), (1500, 40), COLOR_BLACK, -1)
+    time_difference = float(find_time_delta(time_stamps, idx))
+    time_counter += time_difference
+    time_counter = float('{:.2f}'.format(time_counter))
+
+    # # adding the text to the TITLE  - Trial and error method to get rectangle coordinates
+    cv2.putText(img,
+                str(time_counter) + " minutes", (1150, 25),
+                cv2.FONT_HERSHEY_SIMPLEX, 1, COLOR_YELLOW, 2)
+
+    cv2.imshow("Station Map", img)
+    cv2.waitKey(WAIT_KEY_PARAM)
 
 video_output.release()
 
