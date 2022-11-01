@@ -28,7 +28,7 @@ cv2.putText(img, "Tote : " + str(tote_name),(520,30),cv2.FONT_HERSHEY_SIMPLEX, T
 # choose codec according to format needed
 # frame size is WIDTH, HEIGHT
 FRAME_SIZE = (img.shape[1], img.shape[0])
-FRAME_RATE = 8
+FRAME_RATE = 2
 video_output = cv2.VideoWriter(str(tote_name)+'_tote_traversal.mp4',cv2.VideoWriter_fourcc(*'MP4V'), FRAME_RATE, FRAME_SIZE)
 
 for idx in range(total_scans):
@@ -147,7 +147,7 @@ for idx in range(total_scans):
 						 color=COLOR_RED,
 						 thickness=-1)
 		cv2.imshow("Station Map", img)
-		cv2.waitKey(100)
+		cv2.waitKey(200)
 
 	else:
 
@@ -157,7 +157,7 @@ for idx in range(total_scans):
 						 color=COLOR_GREEN,
 						 thickness=-1)
 		cv2.imshow("Station Map", img)
-		cv2.waitKey(100)
+		cv2.waitKey(200)
 
 	# saving the video output here so that the circle colors show up
 
@@ -172,7 +172,7 @@ for idx in range(total_scans):
 					 thickness=-1)
 
 	cv2.imshow("Station Map", img)
-	cv2.waitKey(100)
+	cv2.waitKey(200)
 	
 
 video_output.release()
