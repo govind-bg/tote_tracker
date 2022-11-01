@@ -15,6 +15,12 @@ looping_counters = {}
 # read the map of the system
 img = cv2.imread("test_map.png", cv2.IMREAD_COLOR)
 
+# choose codec according to format needed
+# frame size is WIDTH, HEIGHT
+FRAME_SIZE = (img.shape[1], img.shape[0])
+FRAME_RATE = 8
+video_output = cv2.VideoWriter('tote_traversal.avi',cv2.VideoWriter_fourcc(*'DIVX'), FRAME_RATE, FRAME_SIZE)
+
 for idx in range(total_scans):
 
 	# Checking for the name of the divert and if the divert was TRUE/FALSE
@@ -143,6 +149,12 @@ for idx in range(total_scans):
 		cv2.imshow("Station Map", img)
 		cv2.waitKey(100)
 
+	# saving the video output here so that the circle colors show up
+
+	video_output.write(img)
+	
+	# resetting back to black circle
+
 	img = cv2.circle(img,
 					 station_coordinates[divert_name],
 					 radius=CIRCLE_RAD_BIG,
@@ -150,11 +162,12 @@ for idx in range(total_scans):
 					 thickness=-1)
 
 	cv2.imshow("Station Map", img)
-
 	cv2.waitKey(100)
+	
+
+video_output.release()
 
 cv2.destroyAllWindows()
-
 # print the summary of the tote
 
 print_summary(looping_counters)
