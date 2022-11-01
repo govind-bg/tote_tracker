@@ -8,7 +8,8 @@ import re
 import numpy as np
 import glob
 
-# OPEN_CV Properties
+
+# OPEN_CV Image Properties
 
 COLOR_BLACK = (0, 0, 0)
 COLOR_GREY = (100, 100, 100)
@@ -21,6 +22,15 @@ CIRCLE_RAD_SMALL = 15
 CIRCLE_RAD_BIG = 30
 TEXT_FONT_SIZE = 1
 TEXT_FONT_THICKNESS = 2
+
+# OPEN_CV Video Properties
+
+# Video will be saved at 2 FPS. Slow to properly track the tote
+FRAME_RATE = 2
+# 200 ms was found to be a good balance 
+WAIT_KEY_PARAM= 200 
+# Video format
+VIDEO_FORMAT = cv2.VideoWriter_fourcc(*'MP4V')
 
 # Manually sourced coordinates of the stations
 

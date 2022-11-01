@@ -7,7 +7,8 @@ data = read_csv("raw_file.csv")
 positions_list = prepare_positions_list(data)
 divert_truth_list = prepare_divert_truth(data)
 
-# A variable to iterate until
+# Checks for how many times a scanner saw the tote and
+# iterates that many times in the loop
 
 total_scans = len(divert_truth_list)
 
@@ -28,8 +29,7 @@ cv2.putText(img, "Tote : " + str(tote_name),(520,30),cv2.FONT_HERSHEY_SIMPLEX, T
 # choose codec according to format needed
 # frame size is WIDTH, HEIGHT
 FRAME_SIZE = (img.shape[1], img.shape[0])
-FRAME_RATE = 2
-video_output = cv2.VideoWriter(str(tote_name)+'_tote_traversal.mp4',cv2.VideoWriter_fourcc(*'MP4V'), FRAME_RATE, FRAME_SIZE)
+video_output = cv2.VideoWriter(str(tote_name)+'_tote_traversal.mp4',VIDEO_FORMAT, FRAME_RATE, FRAME_SIZE)
 
 for idx in range(total_scans):
 
@@ -147,7 +147,7 @@ for idx in range(total_scans):
 						 color=COLOR_RED,
 						 thickness=-1)
 		cv2.imshow("Station Map", img)
-		cv2.waitKey(200)
+		cv2.waitKey(WAIT_KEY_PARAM)
 
 	else:
 
@@ -157,7 +157,7 @@ for idx in range(total_scans):
 						 color=COLOR_GREEN,
 						 thickness=-1)
 		cv2.imshow("Station Map", img)
-		cv2.waitKey(200)
+		cv2.waitKey(WAIT_KEY_PARAM)
 
 	# saving the video output here so that the circle colors show up
 
@@ -172,7 +172,7 @@ for idx in range(total_scans):
 					 thickness=-1)
 
 	cv2.imshow("Station Map", img)
-	cv2.waitKey(200)
+	cv2.waitKey(WAIT_KEY_PARAM)
 	
 
 video_output.release()
