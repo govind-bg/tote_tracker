@@ -3,6 +3,7 @@ from helper_functions_OTT import *
 # read the raw data from kibana (exported in CSV format)
 data = read_csv("raw_file.csv")
 
+
 positions_list = prepare_positions_list(data)
 divert_truth_list = prepare_divert_truth(data)
 
@@ -15,11 +16,20 @@ looping_counters = {}
 # read the map of the system
 img = cv2.imread("test_map.png", cv2.IMREAD_COLOR)
 
+# Adding title to the image
+
+# get tote name
+tote_name = get_tote_number(data)
+# Draw TITLE rectangle - Trial and error method to get rectangle coordinates
+img = cv2.rectangle(img, (510,0), (880,40),COLOR_BLACK, -1)
+# adding the text to the TITLE  - Trial and error method to get rectangle coordinates
+cv2.putText(img, "Tote : " + str(tote_name),(520,30),cv2.FONT_HERSHEY_SIMPLEX, TEXT_FONT_SIZE, COLOR_WHITE, TEXT_FONT_THICKNESS)
+
 # choose codec according to format needed
 # frame size is WIDTH, HEIGHT
 FRAME_SIZE = (img.shape[1], img.shape[0])
 FRAME_RATE = 8
-video_output = cv2.VideoWriter('tote_traversal.avi',cv2.VideoWriter_fourcc(*'DIVX'), FRAME_RATE, FRAME_SIZE)
+video_output = cv2.VideoWriter(str(tote_name)+'_tote_traversal.avi',cv2.VideoWriter_fourcc(*'DIVX'), FRAME_RATE, FRAME_SIZE)
 
 for idx in range(total_scans):
 

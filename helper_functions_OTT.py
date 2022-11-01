@@ -69,6 +69,16 @@ box_position_coordinates = {
 	"Divert_ToteLoop_Discharge2": [60, 20, 120, -40],
 }
 
+def get_tote_number(raw_data):
+	"""
+	Gets the tote name from the logs
+	"""
+	# we only need one of the messages
+	first_message = raw_data["message"].tolist() [0]
+	print(first_message)
+	processing_first_message = first_message.split("for ", 1)[1]
+	tote_number = processing_first_message.split(" @",1)[0]
+	return (tote_number)
 
 def find_time_spent(raw_data):
 	"""
