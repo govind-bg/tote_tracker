@@ -29,7 +29,7 @@ cv2.putText(img, "Tote : " + str(tote_name),(520,30),cv2.FONT_HERSHEY_SIMPLEX, T
 # frame size is WIDTH, HEIGHT
 FRAME_SIZE = (img.shape[1], img.shape[0])
 FRAME_RATE = 8
-video_output = cv2.VideoWriter(str(tote_name)+'_tote_traversal.avi',cv2.VideoWriter_fourcc(*'DIVX'), FRAME_RATE, FRAME_SIZE)
+video_output = cv2.VideoWriter(str(tote_name)+'_tote_traversal.mp4',cv2.VideoWriter_fourcc(*'MP4V'), FRAME_RATE, FRAME_SIZE)
 
 for idx in range(total_scans):
 
