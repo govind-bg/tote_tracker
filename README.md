@@ -9,6 +9,8 @@ The code tracks a tote in the system and saves the video
 
 - Go to the link above and download the raw CSV Data for your desired tote and timeframe
 - Paste the .csv file in the site directory and rename it as **raw_file.csv**
+
+**Note: Make sure the data in the CSV is in the reverse chronological order**
 - Run with the python command : **python3 main_OTT.py**
 - All videos will be saved in the videos directory
 
