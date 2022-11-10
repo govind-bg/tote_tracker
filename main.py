@@ -3,7 +3,7 @@ from common_helper import *
 from britton_jax_params import *
 
 # read the raw data from kibana (exported in CSV format)
-data = read_csv("raw_file.csv")
+data = read_csv(RAW_FILE_NAME)
 
 # extracting the time column
 time_stamps = data["@timestamp"].tolist()
@@ -71,7 +71,7 @@ for idx in range(total_scans):
 
             y_1 = box_position_coordinates[divert_name][1]
             y_2 = box_position_coordinates[divert_name][3]
-systems
+
             # Adding offset to systems coords to display the rectangle
             rectangle_corner_1 = (system_coordinates[divert_name][0] + x_1,
                                   system_coordinates[divert_name][1] + y_1)
@@ -199,7 +199,7 @@ systems
     # # adding the text to the TITLE  - Trial and error method to get rectangle coordinates
     cv2.putText(img,
                 str(time_counter) + " minutes", (1150, 25),
-                cv2.FONT_HERSHEY_SIMPLEX, 1, COLOR_YELLOW, 2)
+                cv2.FONT_HERSHEY_SIMPLEX, 0.6, COLOR_YELLOW, 2)
 
     cv2.imshow("System Map", img)
     cv2.waitKey(WAIT_KEY_PARAM)

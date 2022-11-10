@@ -1,7 +1,9 @@
 # Coordinates for Britton-Jacksonville
+# Link to get data: 
+# https://britton.kb.us-central1.gcp.cloud.es.io:9243/s/jacksonville/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-24h%2Fh,to:now))&_a=(columns:!(message),filters:!(),index:b43e9fd0-135e-11ed-992b-f58a19f21880,interval:auto,query:(language:kuery,query:'%22Divert%20decision%22%20%20and%20%2231241672%22'),sort:!(!('@timestamp',desc)))
 
 MAP_NAME = "britton_jax_map.png"
-
+RAW_FILE_NAME = "raw_file_jax.csv"
 # Manually sourced coordinates of the systems
 
 system_coordinates = {
