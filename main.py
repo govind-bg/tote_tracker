@@ -1,4 +1,6 @@
-from helper_functions_OTT import *
+from common_helper import *
+
+from ott_params import *
 
 # read the raw data from kibana (exported in CSV format)
 data = read_csv("raw_file.csv")
@@ -24,8 +26,10 @@ img = cv2.imread("ottawa_aeo_map.png", cv2.IMREAD_COLOR)
 
 # get tote name
 tote_name = get_tote_number(data)
-# Draw TITLE rectangle - Trial and error method to get rectangle coordinates
-img = cv2.rectangle(img, (510, 0), (880, 40), COLOR_BLACK, -1)
+# Draw TITLE rectangle
+img = cv2.rectangle(img, (tote_title_rect_coords[0],tote_title_rect_coords[1]), 
+    (tote_title_rect_coords[2],tote_title_rect_coords[3]), COLOR_BLACK, -1)
+
 # adding the text to the TITLE  - Trial and error method to get rectangle coordinates
 cv2.putText(img, "Tote : " + str(tote_name), (520, 30),
             cv2.FONT_HERSHEY_SIMPLEX, TEXT_FONT_SIZE, COLOR_WHITE,
@@ -183,7 +187,10 @@ for idx in range(total_scans):
                      thickness=-1)
 
     # to display live time spent in the system
-    img = cv2.rectangle(img, (1150, 0), (1500, 40), COLOR_BLACK, -1)
+    img = cv2.rectangle(img, (time_map_rect_coords[0],time_map_rect_coords[1]), 
+        (time_map_rect_coords[2],time_map_rect_coords[3]), COLOR_BLACK, -1)
+
+    # formatting the time
     time_difference = float(find_time_delta(time_stamps, idx))
     time_counter += time_difference
     time_counter = float('{:.2f}'.format(time_counter))
