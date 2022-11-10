@@ -7,6 +7,8 @@ import re
 import numpy as np
 import glob
 
+from sunflower_ott_params import *
+
 def get_tote_number(raw_data):
 	"""
 	Gets the tote name from the logs

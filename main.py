@@ -1,7 +1,5 @@
 from common_helper import *
 
-from ott_params import *
-
 # read the raw data from kibana (exported in CSV format)
 data = read_csv("raw_file.csv")
 
@@ -20,7 +18,7 @@ total_scans = len(divert_truth_list)
 looping_counters = {}
 
 # read the map of the system
-img = cv2.imread("ottawa_aeo_map.png", cv2.IMREAD_COLOR)
+img = cv2.imread("sunflower_ottawa_map.png", cv2.IMREAD_COLOR)
 
 # Adding title to the image
 

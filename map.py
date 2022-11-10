@@ -1,9 +1,9 @@
-from ott_params import *
+from sunflower_ott_params import *
 
 
 # reading the blank image
 
-img = cv2.imread('ottawa_aeo_map.png', cv2.IMREAD_COLOR)
+img = cv2.imread('sunflower_ottawa_map.png', cv2.IMREAD_COLOR)
 
 
 # Looping to draw the circles where the stations will be 
