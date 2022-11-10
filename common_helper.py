@@ -9,6 +9,31 @@ import glob
 
 from sunflower_ott_params import *
 
+# OPEN_CV Image Properties
+
+COLOR_BLACK = (0, 0, 0)
+COLOR_GREY = (100, 100, 100)
+COLOR_WHITE = (255, 255, 255)
+COLOR_YELLOW = (0, 200, 255)
+COLOR_GREEN = (0, 255, 0)
+COLOR_DARK_GREEN = (80, 220, 80)
+COLOR_RED = (0, 0, 255)
+CIRCLE_RAD_SMALL = 15
+CIRCLE_RAD_MEDIUM = 24
+CIRCLE_RAD_BIG = 30
+TEXT_FONT_SIZE = 1
+TEXT_FONT_THICKNESS = 2
+
+# OPEN_CV Video Properties
+
+# Video will be saved at 2 FPS. Slow to properly track the tote
+FRAME_RATE = 2
+# 200 ms was found to be a good balance 
+WAIT_KEY_PARAM= 200 
+# Video format
+VIDEO_FORMAT = cv2.VideoWriter_fourcc(*'MP4V')
+
+
 def get_tote_number(raw_data):
 	"""
 	Gets the tote name from the logs
