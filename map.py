@@ -1,5 +1,5 @@
-from sunflower_ott_params import *
-# from britton_jax_params import *
+# from sunflower_ott_params import *
+from britton_jax_params import *
 from common_helper import *
 
 # reading the blank image
@@ -18,24 +18,24 @@ for stn_name, coords in station_coordinates.items():
 # Looping to draw the black rectangles where the scores will be
 # displayed
 
-for divert_name, _ in box_position_coordinates.items():
+# for divert_name, _ in box_position_coordinates.items():
 
-    # get station position coordinates
-    x_1 = box_position_coordinates[divert_name][0]
-    x_2 = box_position_coordinates[divert_name][2]
+#     # get station position coordinates
+#     x_1 = box_position_coordinates[divert_name][0]
+#     x_2 = box_position_coordinates[divert_name][2]
 
-    y_1 = box_position_coordinates[divert_name][1]
-    y_2 = box_position_coordinates[divert_name][3]
+#     y_1 = box_position_coordinates[divert_name][1]
+#     y_2 = box_position_coordinates[divert_name][3]
 
-    # Adding offset to station coords to display the rectangle
-    rectangle_corner_1 = (station_coordinates[divert_name][0] + x_1,
-                          station_coordinates[divert_name][1] + y_1)
-    rectangle_corner_2 = (station_coordinates[divert_name][0] + x_2,
-                          station_coordinates[divert_name][1] + y_2)
+#     # Adding offset to station coords to display the rectangle
+#     rectangle_corner_1 = (station_coordinates[divert_name][0] + x_1,
+#                           station_coordinates[divert_name][1] + y_1)
+#     rectangle_corner_2 = (station_coordinates[divert_name][0] + x_2,
+#                           station_coordinates[divert_name][1] + y_2)
 
-    # Draw a rectangle
-    img = cv2.rectangle(img, rectangle_corner_1,
-                        rectangle_corner_2, color=COLOR_DARK_GREEN, thickness=-1)
+#     # Draw a rectangle
+#     img = cv2.rectangle(img, rectangle_corner_1,
+#                         rectangle_corner_2, color=COLOR_DARK_GREEN, thickness=-1)
 
 # To display the rectangle that will show the time
 
