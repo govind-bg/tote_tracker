@@ -2,9 +2,9 @@
 
 MAP_NAME = "britton_jax_map.png"
 
-# Manually sourced coordinates of the stations
+# Manually sourced coordinates of the systems
 
-station_coordinates = {
+system_coordinates = {
     "Divert_SPS01_HighwayFeeder": (335, 370),
     "Divert_SPS02_HighwayFeeder": (335, 570),
     "Divert_SPS03_HighwayFeeder": (500, 370),
@@ -23,25 +23,25 @@ station_coordinates = {
 }
 
 # Manually sourced coordinates for the box to be drawn, these are added to the posiitons
-# of the stations listed above
+# of the systems listed above
 
-# box_position_coordinates = {
-#     "Divert_SPS01_HighwayFeeder": [-20, -100, 40, -160],
-#     "Divert_SPS02_HighwayFeeder": [-20, -100, 40, -160],
-#     "Divert_SPS03_HighwayFeeder": [-20, -100, 40, -160],
-#     "Divert_SPS04_HighwayFeeder": [-20, -100, 40, -160],
-#     "Divert_SPS05_HighwayFeeder": [-20, -100, 40, -160],
-#     "Divert_SPS06_HighwayFeeder": [-20, 100, 40, 160],
-#     "Divert_SPS07_HighwayFeeder": [-20, 100, 40, 160],
-#     "Divert_SPS08_HighwayFeeder": [-20, 100, 40, 160],
-#     "Divert_SPS09_HighwayFeeder": [-20, 100, 40, 160],
-#     "Divert_SPS10_HighwayFeeder": [-20, 100, 40, 160],
-#     "Divert_ToteLoop_Recirc1": [40, 0, 100, 60],
-#     "Divert_ToteLoop_Recirc2": [-120, 20, -60, -40],
-#     "Divert_ToteLoop_Discharge1": [-120, 20, -60, -40],
-#     "Divert_ToteLoop_Discharge2": [60, 20, 120, -40],
-#     "Divert_ToteLoop_Jackpot": [60, 20, 120, -40],
-# }
+box_position_coordinates = {
+    "Divert_SPS01_HighwayFeeder": [-20, -100, 40, -160],
+    "Divert_SPS02_HighwayFeeder": [-20, -100, 40, -160],
+    "Divert_SPS03_HighwayFeeder": [-20, -100, 40, -160],
+    "Divert_SPS04_HighwayFeeder": [-20, -100, 40, -160],
+    "Divert_SPS05_HighwayFeeder": [-20, -100, 40, -160],
+    "Divert_SPS06_HighwayFeeder": [-20, 100, 40, 160],
+    "Divert_SPS07_HighwayFeeder": [-20, 100, 40, 160],
+    "Divert_SPS08_HighwayFeeder": [-20, 100, 40, 160],
+    "Divert_SPS09_HighwayFeeder": [-20, 100, 40, 160],
+    "Divert_SPS10_HighwayFeeder": [-20, 100, 40, 160],
+    "Divert_ToteLoop_Recirc1": [40, 0, 100, 60],
+    "Divert_ToteLoop_Recirc2": [-120, 20, -60, -40],
+    "Divert_ToteLoop_Discharge1": [-120, 20, -60, -40],
+    "Divert_ToteLoop_Discharge2": [60, 20, 120, -40],
+    "Divert_ToteLoop_Jackpot": [60, 20, 120, -40],
+}
 
 # Tote title coordinates on the image
 

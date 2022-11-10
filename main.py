@@ -63,20 +63,20 @@ for idx in range(total_scans):
             print('tote divert requested to: ', divert_name)
             looping_counters[divert_name]['diverted'] = 1
 
-            # Draw filled rectangles to display the station divert TRUE Score
+            # Draw filled rectangles to display the systems divert TRUE Score
 
-            # get station position coordinates
+            # get systems position coordinates
             x_1 = box_position_coordinates[divert_name][0]
             x_2 = box_position_coordinates[divert_name][2]
 
             y_1 = box_position_coordinates[divert_name][1]
             y_2 = box_position_coordinates[divert_name][3]
-
-            # Adding offset to station coords to display the rectangle
-            rectangle_corner_1 = (station_coordinates[divert_name][0] + x_1,
-                                  station_coordinates[divert_name][1] + y_1)
-            rectangle_corner_2 = (station_coordinates[divert_name][0] + x_2,
-                                  station_coordinates[divert_name][1] + y_2)
+systems
+            # Adding offset to systems coords to display the rectangle
+            rectangle_corner_1 = (system_coordinates[divert_name][0] + x_1,
+                                  system_coordinates[divert_name][1] + y_1)
+            rectangle_corner_2 = (system_coordinates[divert_name][0] + x_2,
+                                  system_coordinates[divert_name][1] + y_2)
 
             # Draw a rectangle
             img = cv2.rectangle(img, rectangle_corner_1, rectangle_corner_2,
@@ -85,11 +85,11 @@ for idx in range(total_scans):
             # Text coordinates
 
             text_corner_x = int(
-                (station_coordinates[divert_name][0] + x_1 +
-                 station_coordinates[divert_name][0] + x_2) / 2)
+                (system_coordinates[divert_name][0] + x_1 +
+                 system_coordinates[divert_name][0] + x_2) / 2)
             text_corner_y = int(
-                (station_coordinates[divert_name][1] + y_1 +
-                 station_coordinates[divert_name][1] + y_2) / 2)
+                (system_coordinates[divert_name][1] + y_1 +
+                 system_coordinates[divert_name][1] + y_2) / 2)
 
             # added as a manual param to center the text in the rectangle
             text_offset = 20
@@ -113,20 +113,20 @@ for idx in range(total_scans):
 
             looping_counters[divert_name]['diverted'] += 1
 
-            # Draw filled rectangles to display the station divert TRUE Score
+            # Draw filled rectangles to display the systems divert TRUE Score
 
-            # get station position coordinates
+            # get systems position coordinates
             x_1 = box_position_coordinates[divert_name][0]
             x_2 = box_position_coordinates[divert_name][2]
 
             y_1 = box_position_coordinates[divert_name][1]
             y_2 = box_position_coordinates[divert_name][3]
 
-            # Adding offset to station coords to display the rectangle
-            rectangle_corner_1 = (station_coordinates[divert_name][0] + x_1,
-                                  station_coordinates[divert_name][1] + y_1)
-            rectangle_corner_2 = (station_coordinates[divert_name][0] + x_2,
-                                  station_coordinates[divert_name][1] + y_2)
+            # Adding offset to systems coords to display the rectangle
+            rectangle_corner_1 = (system_coordinates[divert_name][0] + x_1,
+                                  system_coordinates[divert_name][1] + y_1)
+            rectangle_corner_2 = (system_coordinates[divert_name][0] + x_2,
+                                  system_coordinates[divert_name][1] + y_2)
 
             # Draw a rectangle
             img = cv2.rectangle(img, rectangle_corner_1, rectangle_corner_2,
@@ -135,11 +135,11 @@ for idx in range(total_scans):
             # Text coordinates
 
             text_corner_x = int(
-                (station_coordinates[divert_name][0] + x_1 +
-                 station_coordinates[divert_name][0] + x_2) / 2)
+                (system_coordinates[divert_name][0] + x_1 +
+                 system_coordinates[divert_name][0] + x_2) / 2)
             text_corner_y = int(
-                (station_coordinates[divert_name][1] + y_1 +
-                 station_coordinates[divert_name][1] + y_2) / 2)
+                (system_coordinates[divert_name][1] + y_1 +
+                 system_coordinates[divert_name][1] + y_2) / 2)
 
             # added as a manual param to center the text in the rectangle
             text_offset = 20
@@ -158,21 +158,21 @@ for idx in range(total_scans):
     if divert_truth == 'False':
 
         img = cv2.circle(img,
-                         station_coordinates[divert_name],
+                         system_coordinates[divert_name],
                          radius=CIRCLE_RAD_SMALL,
                          color=COLOR_RED,
                          thickness=-1)
-        cv2.imshow("Station Map", img)
+        cv2.imshow("System Map", img)
         cv2.waitKey(WAIT_KEY_PARAM)
 
     else:
 
         img = cv2.circle(img,
-                         station_coordinates[divert_name],
+                         system_coordinates[divert_name],
                          radius=CIRCLE_RAD_MEDIUM,
                          color=COLOR_GREEN,
                          thickness=-1)
-        cv2.imshow("Station Map", img)
+        cv2.imshow("System Map", img)
         cv2.waitKey(WAIT_KEY_PARAM)
 
     # saving the video output here so that the circle colors show up
@@ -182,7 +182,7 @@ for idx in range(total_scans):
     # resetting back to black circle
 
     img = cv2.circle(img,
-                     station_coordinates[divert_name],
+                     system_coordinates[divert_name],
                      radius=CIRCLE_RAD_BIG,
                      color=COLOR_BLACK,
                      thickness=-1)
@@ -201,7 +201,7 @@ for idx in range(total_scans):
                 str(time_counter) + " minutes", (1150, 25),
                 cv2.FONT_HERSHEY_SIMPLEX, 1, COLOR_YELLOW, 2)
 
-    cv2.imshow("Station Map", img)
+    cv2.imshow("System Map", img)
     cv2.waitKey(WAIT_KEY_PARAM)
 
 video_output.release()

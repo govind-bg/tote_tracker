@@ -2,9 +2,9 @@
 
 MAP_NAME = "sunflower_ottawa_map.png"
 
-# Manually sourced coordinates of the stations
+# Manually sourced coordinates of the systems 
 
-station_coordinates = {
+system_coordinates = {
     "Divert_SPS01_HighwayFeeder": (1070, 590),
     "Divert_SPS02_HighwayFeeder": (890, 590),
     "Divert_SPS03_HighwayFeeder": (700, 590),
@@ -26,7 +26,7 @@ station_coordinates = {
 }
 
 # Manually sourced coordinates for the box to be drawn, these are added to the posiitons
-# of the stations listed above
+# of the systems listed above
 
 box_position_coordinates = {
     "Divert_SPS01_HighwayFeeder": [-20, -100, 40, -160],
