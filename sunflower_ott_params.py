@@ -2,8 +2,8 @@
 # Link to get data: 
 # https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-7d%2Fd,to:now))&_a=(columns:!(message,system_name),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22Divert%20decision%22%20%20and%20%22770000601205%22'),sort:!(!('@timestamp',desc)))
 
-MAP_NAME = "sunflower_ottawa_map.png"
-RAW_FILE_NAME = "raw_file_ott.csv"
+MAP_NAME = "Images/sunflower_ottawa_map.png"
+RAW_FILE_NAME = "raw_data/raw_file_ott.csv"
 
 # Manually sourced coordinates of the systems 
 

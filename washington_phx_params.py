@@ -1,8 +1,8 @@
 # Coordinates for Sunflower-Ottawa
 # Link to get data: 
 
-MAP_NAME = "washington_phx_map.png"
-RAW_FILE_NAME = "raw_file_phx.csv"
+MAP_NAME = "Images/washington_phx_map.png"
+RAW_FILE_NAME = "raw_data/raw_file_phx.csv"
 
 # Manually sourced coordinates of the systems 
 
