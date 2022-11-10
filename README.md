@@ -3,7 +3,9 @@ The code tracks a tote in the system and saves the video
 
 - Currently the code is written for Ottawa AEO only. As more sites come in, the code will be refactored to become scalable
 
-[Link to the source data](https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-7d%2Fd,to:now))&_a=(columns:!(message,system_name),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22Divert%20decision%22%20%20and%20%22770000601205%22'),sort:!(!('@timestamp',desc))))
+[Link to the source data for Ottawa](https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-7d%2Fd,to:now))&_a=(columns:!(message,system_name),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22Divert%20decision%22%20%20and%20%22770000601205%22'),sort:!(!('@timestamp',desc))))
+
+[Link to the source data for Jacksonville](https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-7d%2Fd,to:now))&_a=(columns:!(message,system_name),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22Divert%20decision%22%20%20and%20%22770000601205%22'),sort:!(!('@timestamp',desc))))
 
 # How to use it
 
@@ -16,7 +18,9 @@ The code tracks a tote in the system and saves the video
 
 ## Projects currently supported
 
-- AEO - SPS - Ottawa
+- Sunflower - SPS - Ottawa
+- Britton - SPS - Jacksonville
+- Washington- SPS - Phoenix **(in the works)**
 
 ## Necessary Packages
 
