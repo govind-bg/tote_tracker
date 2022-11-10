@@ -28,6 +28,8 @@ system_coordinates = {
 # Manually sourced coordinates for the box to be drawn, these are added to the posiitons
 # of the systems listed above
 
+# x_1, y_1, x_2, y_2
+
 box_position_coordinates = {
     "Divert_SPS01_HighwayFeeder": [-20, -100, 40, -160],
     "Divert_SPS02_HighwayFeeder": [-20, -100, 40, -160],

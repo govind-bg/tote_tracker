@@ -25,22 +25,24 @@ system_coordinates = {
 # Manually sourced coordinates for the box to be drawn, these are added to the posiitons
 # of the systems listed above
 
+# x_1, y_1, x_2, y_2
+
 box_position_coordinates = {
-    "Divert_SPS01_HighwayFeeder": [-20, -100, 40, -160],
-    "Divert_SPS02_HighwayFeeder": [-20, -100, 40, -160],
-    "Divert_SPS03_HighwayFeeder": [-20, -100, 40, -160],
-    "Divert_SPS04_HighwayFeeder": [-20, -100, 40, -160],
-    "Divert_SPS05_HighwayFeeder": [-20, -100, 40, -160],
-    "Divert_SPS06_HighwayFeeder": [-20, 100, 40, 160],
-    "Divert_SPS07_HighwayFeeder": [-20, 100, 40, 160],
-    "Divert_SPS08_HighwayFeeder": [-20, 100, 40, 160],
-    "Divert_SPS09_HighwayFeeder": [-20, 100, 40, 160],
-    "Divert_SPS10_HighwayFeeder": [-20, 100, 40, 160],
-    "Divert_ToteLoop_Recirc1": [40, 0, 100, 60],
-    "Divert_ToteLoop_Recirc2": [-120, 20, -60, -40],
-    "Divert_ToteLoop_Discharge1": [-120, 20, -60, -40],
-    "Divert_ToteLoop_Discharge2": [60, 20, 120, -40],
-    "Divert_ToteLoop_Jackpot": [60, 20, 120, -40],
+    "Divert_SPS01_HighwayFeeder": [-80, -20, -40, 20],
+    "Divert_SPS02_HighwayFeeder": [-80, -20, -40, 20],
+    "Divert_SPS03_HighwayFeeder": [-80, -20, -40, 20],
+    "Divert_SPS04_HighwayFeeder": [-80, -20, -40, 20],
+    "Divert_SPS05_HighwayFeeder": [-80, -20, -40, 20],
+    "Divert_SPS06_HighwayFeeder": [-80, -20, -40, 20],
+    "Divert_SPS07_HighwayFeeder": [-80, -20, -40, 20],
+    "Divert_SPS08_HighwayFeeder": [-80, -20, -40, 20],
+    "Divert_SPS09_HighwayFeeder": [-80, -20, -40, 20],
+    "Divert_SPS10_HighwayFeeder": [-80, -20, -40, 20],
+    "Divert_ToteLoop_Recirc1": [40, -20, 80, 20],
+    "Divert_ToteLoop_Recirc2": [40, -20, 80, 20],
+    "Divert_ToteLoop_Discharge1": [-80, -20, -40, 20],
+    "Divert_ToteLoop_Discharge2": [-80, -20, -40, 20],
+    "Divert_ToteLoop_Jackpot": [40, -20, 80, 20]
 }
 
 # Tote title coordinates on the image
