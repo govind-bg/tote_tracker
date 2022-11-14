@@ -108,7 +108,7 @@ for idx in range(total_scans):
     else:
         looping_counters[divert_name]['instances_visitied'] += 1
         if divert_truth == 'True':
-            print('tote divert requested AGAIN to: ', divert_name)
+            print('tote divert requested to: ', divert_name)
 
             # this new updated value will now go inside the rectangle
 
