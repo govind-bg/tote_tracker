@@ -1,8 +1,8 @@
 from common_helper import *
-# from sunflower_ott_params import *
+from sunflower_ott_params import *
 # from washington_phx_params import *
-from britton_jax_params import *
-
+# from britton_jax_params import *
+IM_SHOW = 0 # if you want to see the video, IM_SHOW == 1, else IM_sHOW == 0
 # read the raw data from kibana (exported in CSV format)
 data = read_csv(RAW_FILE_NAME)
 
@@ -163,7 +163,8 @@ for idx in range(total_scans):
                          radius=CIRCLE_RAD_SMALL,
                          color=COLOR_RED,
                          thickness=-1)
-        cv2.imshow("System Map", img)
+        if IM_SHOW == 1:
+            cv2.imshow("System Map", img)
         cv2.waitKey(WAIT_KEY_PARAM)
 
     else:
@@ -173,7 +174,8 @@ for idx in range(total_scans):
                          radius=CIRCLE_RAD_MEDIUM,
                          color=COLOR_GREEN,
                          thickness=-1)
-        cv2.imshow("System Map", img)
+        if IM_SHOW ==1:
+            cv2.imshow("System Map", img)
         cv2.waitKey(WAIT_KEY_PARAM)
 
     # saving the video output here so that the circle colors show up
@@ -197,12 +199,14 @@ for idx in range(total_scans):
     time_counter += time_difference
     time_counter = float('{:.2f}'.format(time_counter))
 
-    # # adding the text to the TITLE  - Trial and error method to get rectangle coordinates
-    cv2.putText(img,
-                str(time_counter) + " minutes", (1150, 25),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.6, COLOR_YELLOW, 2)
+    if IM_SHOW ==1:
+        # # adding the text to the TITLE  - Trial and error method to get rectangle coordinates
+        cv2.putText(img,
+                    str(time_counter) + " minutes", (1150, 25),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, COLOR_YELLOW, 2)
 
-    cv2.imshow("System Map", img)
+        cv2.imshow("System Map", img)
+        
     cv2.waitKey(WAIT_KEY_PARAM)
 
 video_output.release()

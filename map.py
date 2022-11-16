@@ -1,5 +1,5 @@
-# from sunflower_ott_params import *
-from britton_jax_params import *
+from sunflower_ott_params import *
+# from britton_jax_params import *
 # from washington_phx_params import *
 from common_helper import *
 
