@@ -1,4 +1,4 @@
-import cv2
+# Data from https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1h,to:now))&_a=(columns:!(message,tote_id,location_id),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22arrived%22%20'),sort:!(!('@timestamp',desc)))
 import csv
 import time
 import sys
@@ -10,7 +10,6 @@ import glob
 from common_helper import *
 from matplotlib import pyplot as plt
 RAW_FILE_NAME = "raw_data/time_measure.csv"
-data = read_csv(RAW_FILE_NAME)
 
 dataFrame = pd.read_csv(RAW_FILE_NAME)
 
@@ -83,8 +82,7 @@ for location_iterator in range(len(all_locations)):
 
     average_time_seconds = (sum(average_time_list)/len(average_time_list))
     print('Average time taken between totes at ',
-          all_locations[location_iterator], ' is : ', average_time_seconds, ' seconds')
-
+          all_locations[location_iterator], ' is : ', average_time_seconds, ' seconds | Totes processed : ' ,len(average_time_list))
     # redoing it for every point, so setting iterator back to 0
     average_time_list = []
     time_list_iterator = 0
