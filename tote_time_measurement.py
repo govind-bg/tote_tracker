@@ -73,8 +73,9 @@ for location_iterator in range(len(all_locations)):
 
     average_time_list = []
     for time_list_iterator in range(len(time_stamp_list)):
-    	# appending seconds instead of minutes
-        average_time_list.append(find_time_delta(time_stamp_list, time_list_iterator)*60)
+        # appending seconds instead of minutes
+        average_time_list.append(find_time_delta(
+            time_stamp_list, time_list_iterator)*60)
 
     all_average_time_dic[all_locations[location_iterator]] = average_time_list
 
@@ -102,7 +103,8 @@ fig, axs = plt.subplots(axis_rows, axis_columns)
 
 fig.suptitle('Time between Totes across all cells')
 fig.text(0.5, 0.04, 'number of totes', ha='center')
-fig.text(0.04, 0.5, 'time between totes in seconds', va='center', rotation='vertical')
+fig.text(0.04, 0.5, 'time between totes in seconds',
+         va='center', rotation='vertical')
 # count to iterate through all dictionary keys
 
 count = 0
@@ -114,7 +116,8 @@ for r in range(axis_rows):
         # drawing the subplot
 
         axs[r, c].plot(all_average_time_dic[all_average_time_dic_keys[count]])
-        axs[r, c].set_title(all_average_time_dic_keys[count],fontsize=9)
+        axs[r, c].set_ylim([0, 100])
+        axs[r, c].set_title(all_average_time_dic_keys[count], fontsize=9)
         count += 1
 
 # show the matplotlib plot
