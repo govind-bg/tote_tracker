@@ -49,7 +49,7 @@ def find_time_delta(time_stamp_list, main_iterator):
     Gets the time difference between 2 timestampts whie
     iterating through the loop in main script. Not 
     returning in string format because we need to add it
-    in the main loop
+    in the main loop. Returns time in minutes
     """
     if main_iterator == 0:
         return 0
