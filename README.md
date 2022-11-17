@@ -7,9 +7,11 @@ The code tracks a tote in the system and saves the video
 
 [Link to the source data for Jacksonville](https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-7d%2Fd,to:now))&_a=(columns:!(message,system_name),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22Divert%20decision%22%20%20and%20%22770000601205%22'),sort:!(!('@timestamp',desc))))
 
+[Link to the source data for Tote Tracker](https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1h,to:now))&_a=(columns:!(message,tote_id,location_id),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22arrived%22%20'),sort:!(!('@timestamp',desc))))
+
 # How to use this repo
 
-## To track tote journey throughout a system
+### To track tote journey throughout a system
 
 - Go to the link above every file and download the raw CSV Data for your desired tote and timeframe
 - Paste the .csv file in the site directory and rename it as **raw_file.csv**
@@ -20,12 +22,18 @@ The code tracks a tote in the system and saves the video
 - All videos will be saved in the videos directory
 - Output looks like below:
 
-## To track time between totes at locations
+
+### To track time between totes at locations
 
 - Run with the python command : **python3 tote_time_measurement.py**
 - Output looks like below:
 
-## File guide
+| Terminal Output  | Graphical Output |
+| ------------- | ------------- |
+| ![Tote Tracker Output Plots](Images/tote_tracker_plots.png)  | ![Tote Tracker Output Plots](Images/tote_tracker_text.png) |
+
+
+# File guide
 
 | File Name  | File usage |
 | ------------- | ------------- |
@@ -37,7 +45,7 @@ The code tracks a tote in the system and saves the video
 | main.py  | Main file to be run to track the tote and save the video (if needed)  |
 | tote_time_measurement.py  | Program to set measure the time between totes seen at all autoshuttle diverts and recirc locations  |
 
-## Projects currently supported
+# Projects currently supported
 
 | Client   | Location | 
 | ------------- | ------------- | 
@@ -45,7 +53,7 @@ The code tracks a tote in the system and saves the video
 | Britton | Jacksonville, Texas |
 | Washington (in the works) | Phoenix, Arizona |
 
-## Necessary Packages
+# Necessary Packages
 
 
 | File Name  | 
