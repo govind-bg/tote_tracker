@@ -10,7 +10,6 @@ import glob
 from common_helper import *
 from matplotlib import pyplot as plt
 RAW_FILE_NAME = "raw_data/time_measure.csv"
-
 dataFrame = pd.read_csv(RAW_FILE_NAME)
 
 all_locations = ['Divert_SPS01_HighwayFeeder', 'Divert_SPS02_HighwayFeeder',
@@ -66,7 +65,7 @@ all_average_time_dic = {}
 
 main_avg = []
 total_totes = 0
-
+y_lim = 0
 for location_iterator in range(len(all_locations)):
 
     time_stamp_list = find_time(df_names[location_iterator])
@@ -80,6 +79,10 @@ for location_iterator in range(len(all_locations)):
             time_stamp_list, time_list_iterator)*60)
 
     all_average_time_dic[all_locations[location_iterator]] = average_time_list
+
+    # Dynamically change y_lim for every instance. So we set y_lim as the highest time interval we see
+    if max(average_time_list) > y_lim:
+        y_lim = max(average_time_list)
 
     # converting average time to seconds
 
@@ -101,7 +104,7 @@ print(' ====== Overall Tote Loop Average time between totes at every point is : 
       (sum(main_avg)/len(main_avg)), ' seconds  ====== ')
 print(' ====== Total Totes processed (repeated)  : ', total_totes, ' ====== ')
 # subplot properties
-
+print(' ====== Total Unique Totes processed : ', len(set(dataFrame["tote_id"].tolist())), ' ====== ')
 axis_rows = 3
 axis_columns = 6
 fig, axs = plt.subplots(axis_rows, axis_columns)
@@ -122,7 +125,7 @@ for r in range(axis_rows):
         # drawing the subplot
 
         axs[r, c].plot(all_average_time_dic[all_average_time_dic_keys[count]])
-        axs[r, c].set_ylim([0, 100])
+        axs[r, c].set_ylim([0, y_lim + 25])
         axs[r, c].set_title(all_average_time_dic_keys[count], fontsize=9)
         count += 1
 
