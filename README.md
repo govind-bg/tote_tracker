@@ -22,7 +22,8 @@ The code tracks a tote in the system and saves the video
 - All videos will be saved in the videos directory
 - Output looks like below:
 
-
+ ![Tote Tracker Output Plots](Images/tote_tracking_video_screenshot.png) 
+ 
 ### To track time between totes at locations
 
 - Run with the python command : **python3 tote_time_measurement.py**
