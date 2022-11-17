@@ -64,6 +64,9 @@ def find_time(df):
 
 all_average_time_dic = {}
 
+main_avg = []
+total_totes = 0
+
 for location_iterator in range(len(all_locations)):
 
     time_stamp_list = find_time(df_names[location_iterator])
@@ -81,9 +84,11 @@ for location_iterator in range(len(all_locations)):
     # converting average time to seconds
 
     average_time_seconds = (sum(average_time_list)/len(average_time_list))
+    main_avg.append(average_time_seconds)
     print('Average time taken between totes at ',
-          all_locations[location_iterator], ' is : ', average_time_seconds, ' seconds | Totes processed : ' ,len(average_time_list))
+          all_locations[location_iterator], ' is : ', average_time_seconds, ' seconds | Totes processed : ', len(average_time_list))
     # redoing it for every point, so setting iterator back to 0
+    total_totes += len(average_time_list)
     average_time_list = []
     time_list_iterator = 0
 
@@ -91,7 +96,10 @@ all_average_time_dic_keys = []
 for k, v in all_average_time_dic.items():
     all_average_time_dic_keys.append(k)
 
-
+print ('\n')
+print(' ====== Overall Tote Loop Average time between totes at every point is : ',
+      (sum(main_avg)/len(main_avg)), ' seconds  ====== ')
+print(' ====== Total Totes processed (repeated)  : ', total_totes, ' ====== ')
 # subplot properties
 
 axis_rows = 3
