@@ -1,7 +1,9 @@
 # tote_tracker
-The code tracks a tote in the system and saves the video
 
-- Currently the code is written for Ottawa AEO only. As more sites come in, the code will be refactored to become scalable
+There are 2 functionalities in this repository:
+
+- Tracking a totes journey through the system
+- Tracking time between totes at any point
 
 [Link to the source data for Ottawa](https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-7d%2Fd,to:now))&_a=(columns:!(message,system_name),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22Divert%20decision%22%20%20and%20%22770000601205%22'),sort:!(!('@timestamp',desc))))
 
