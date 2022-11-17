@@ -16,14 +16,32 @@ The code tracks a tote in the system and saves the video
 - Run with the python command : **python3 main_OTT.py**
 - All videos will be saved in the videos directory
 
+## File guide
+
+| File Name  | File usage |
+| ------------- | ------------- |
+| map.py  | To mark out the stations on the map. This can be used initially to set the station locations for every site.  |
+| common_helper.py  | Helper functions that can be used throughout this repo  |
+| sunflower_ott_params.py  | Sunflower Client, Ottawa, Kansas specific parameters  |
+| britton_jax_params.py  | Britton Client, Jacksonville, Texas specific parameters  |
+| washington_phx_params.py  | Washington Client, Phoenix, Arizona specific parameters  |
+| main.py  | Main file to be run to track the tote and save the video (if needed)  |
+| tote_time_measurement.py  | Program to set measure the time between totes seen at all autoshuttle diverts and recirc locations  |
+
 ## Projects currently supported
 
-- Sunflower - SPS - Ottawa
-- Britton - SPS - Jacksonville
-- Washington- SPS - Phoenix **(in the works)**
+| Client   | Location | 
+| ------------- | ------------- | 
+| Sunflower | Ottawa, Kansas |
+| Britton | Jacksonville, Texas |
+| Washington (in the works) | Phoenix, Arizona |
 
 ## Necessary Packages
 
-    OpenCV - pip3 install opencv-python
-    datetime
-    Pandas
+
+| File Name  | 
+| ------------- | 
+| OpenCV |
+| datetime |
+| Pandas |
+| Matplotlib |
