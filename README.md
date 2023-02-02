@@ -1,5 +1,12 @@
 # tote_tracker
 
+ ### NOTE : Lansing features have not been completely implemented. Need to add the following for lanisng :
+
+- coordinates for the system in huron_lan_params.py
+- coordinates for the scanners in huron_lan_params.py
+- List of all the scanner names
+
+
 There are 2 functionalities in this repository:
 
 - Tracking a totes journey through the system
@@ -40,23 +47,25 @@ There are 2 functionalities in this repository:
 
 # File guide
 
-| File Name  | File usage |
-| ------------- | ------------- |
-| map.py  | To mark out the stations on the map. This can be used initially to set the station locations for every site.  |
-| common_helper.py  | Helper functions that can be used throughout this repo  |
-| sunflower_ott_params.py  | Sunflower Client, Ottawa, Kansas specific parameters  |
-| britton_jax_params.py  | Britton Client, Jacksonville, Texas specific parameters  |
-| washington_phx_params.py  | Washington Client, Phoenix, Arizona specific parameters  |
-| main.py  | Main file to be run to track the tote and save the video (if needed)  |
-| tote_time_measurement.py  | Program to set measure the time between totes seen at all autoshuttle diverts and recirc locations  |
+| File Name                | File usage                                                                                                   |
+|--------------------------|--------------------------------------------------------------------------------------------------------------|
+| map.py                   | To mark out the stations on the map. This can be used initially to set the station locations for every site. |
+| common_helper.py         | Helper functions that can be used throughout this repo                                                       |
+| sunflower_ott_params.py  | Sunflower Client, Ottawa, Kansas specific parameters                                                         |
+| britton_jax_params.py    | Britton Client, Jacksonville, Texas specific parameters                                                      |
+| washington_phx_params.py | Washington Client, Phoenix, Arizona specific parameters                                                      |
+| huron_lan_params.py      | Huron Client, Lansing, Michigan specific parameters                                                          |
+| main.py                  | Main file to be run to track the tote and save the video (if needed)                                         |
+| tote_time_measurement.py | Program to set measure the time between totes seen at all autoshuttle diverts and recirc locations           |
 
 # Projects currently supported
 
-| Client   | Location | 
-| ------------- | ------------- | 
-| Sunflower | Ottawa, Kansas |
-| Britton | Jacksonville, Texas |
-| Washington (in the works) | Phoenix, Arizona |
+| Client                    | Location                 | 
+|---------------------------|--------------------------| 
+| Sunflower                 | Ottawa, Kansas           |
+| Britton                   | Jacksonville, Texas      |
+| Washington (in the works) | Phoenix, Arizona         |
+| Huron                     | Lansing, Michigan |
 
 # Necessary Packages
 
