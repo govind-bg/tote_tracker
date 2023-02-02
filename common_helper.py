@@ -148,8 +148,17 @@ def prepare_divert_truth(raw_data):
     """
 
     messages = raw_data["message"].tolist()
-    divert_truth_list_func = [msg.split("for", 1)[0] for msg in messages]
-
+    # if case for lansing messages because lansing messages are in a different format
+    # lansing message format:reason for wakeup: Divert decision (True) for D0106690 @ Divert_SPS02_HighwayFeeder
+    # non-lansing message format:
+    # Divert decision (True) for 31257975 @ Divert_ToteLoop_Jackpot
+    if messages[0][0:6] == 'reason':
+        print('Lansing message format found')
+        msg2 = [msg.split("reason for wakeup: ", 1)[1] for msg in messages]
+        divert_truth_list_func = [msg3.split("for", 1)[0] for msg3 in msg2]
+    else:
+        divert_truth_list_func = [msg.split("for", 1)[0] for msg in messages]
+        print(divert_truth_list_func)
     # Reversing the list as to be reverse chronological
 
     divert_truth_list_func.reverse()
