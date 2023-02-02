@@ -1,13 +1,15 @@
 # tote_tracker
 
- ### NOTE : Lansing features have not been completely implemented. Need to add the following for lanisng :
+---------------------
+ #### NOTE : Lansing features have not been completely implemented. Need to add the following for lanisng :
 
-- coordinates for the system in huron_lan_params.py
-- coordinates for the scanners in huron_lan_params.py
+- Coordinates for the system in huron_lan_params.py
+- Coordinates for the scanners in huron_lan_params.py
 - List of all the scanner names
+---------------------
 
 
-There are 2 functionalities in this repository:
+### Main functionalities in this repository:
 
 - Tracking a totes journey through the system
 - Tracking time between totes at any point
