@@ -6,6 +6,7 @@ from datetime import datetime
 import re
 import numpy as np
 import glob
+from site_params.sunflower_ott_params import *
 
 # OPEN_CV Image Properties
 
@@ -38,10 +39,8 @@ def get_tote_number(raw_data):
     """
     # we only need one of the messages
     first_message = raw_data["message"].tolist()[0]
-    print(first_message)
-    processing_first_message = first_message.split("for ", 1)[1]
-    tote_number = processing_first_message.split(" @", 1)[0]
-    return (tote_number)
+    tote_number = (first_message.split(" @")[0]).split('for')[-1]
+    return tote_number
 
 
 def find_time_delta(time_stamp_list, main_iterator):
@@ -54,7 +53,7 @@ def find_time_delta(time_stamp_list, main_iterator):
     if main_iterator == 0:
         return 0
 
-    time_stamp_prev = time_stamp_list[main_iterator-1]
+    time_stamp_prev = time_stamp_list[main_iterator - 1]
     time_stamp_current = time_stamp_list[main_iterator]
     time_stamp_prev = datetime.strptime(
         time_stamp_prev, "%b %d, %Y @ %H:%M:%S.%f")
@@ -66,7 +65,7 @@ def find_time_delta(time_stamp_list, main_iterator):
     time_minutes = divmod(time_delta.total_seconds(), 60)
 
     # this returns the time in minutes
-    time_minutes = time_minutes[0] + (time_minutes[1]/60)
+    time_minutes = time_minutes[0] + (time_minutes[1] / 60)
     return time_minutes
 
 
@@ -149,11 +148,12 @@ def prepare_divert_truth(raw_data):
 
     messages = raw_data["message"].tolist()
     # if case for lansing messages because lansing messages are in a different format
-    # lansing message format:reason for wakeup: Divert decision (True) for D0106690 @ Divert_SPS02_HighwayFeeder
-    # non-lansing message format:
+    # New message format:
+    # reason for wakeup: Divert decision (True) for D0106690 @ Divert_SPS02_HighwayFeeder
+    # Old message format:
     # Divert decision (True) for 31257975 @ Divert_ToteLoop_Jackpot
     if messages[0][0:6] == 'reason':
-        print('Lansing message format found')
+        print('New message format found')
         msg2 = [msg.split("reason for wakeup: ", 1)[1] for msg in messages]
         divert_truth_list_func = [msg3.split("for", 1)[0] for msg3 in msg2]
     else:
@@ -165,7 +165,6 @@ def prepare_divert_truth(raw_data):
     reversed_divert_truth_list = divert_truth_list_func
 
     for idx in range(len(reversed_divert_truth_list)):
-
         # Extraction TRUE/FALSE from the divert decision
 
         divert_truth = re.findall('\((.*?)\)', reversed_divert_truth_list[idx])

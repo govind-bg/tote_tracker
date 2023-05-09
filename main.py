@@ -1,9 +1,10 @@
 from common_helper import *
-# from sunflower_ott_params import *
-# from washington_phx_params import *
-# from britton_jax_params import *
-from huron_lan_params import *
-IM_SHOW = 0 # if you want to see the video, IM_SHOW == 1, else IM_sHOW == 0
+from site_params.sunflower_ott_params import *
+
+# from site_params.washington_phx_params import *
+# from site_params.britton_jax_params import *
+# from site_params.huron_lan_params import *
+IM_SHOW = 0  # if you want to see the video, IM_SHOW == 1, else IM_sHOW == 0
 # read the raw data from kibana (exported in CSV format)
 data = read_csv(RAW_FILE_NAME)
 
@@ -50,7 +51,7 @@ video_output = cv2.VideoWriter(
 time_counter = 0.0
 
 for idx in range(total_scans):
-
+    print(idx)
     # Checking for the name of the divert and if the divert was TRUE/FALSE
 
     divert_name = positions_list[idx]
@@ -62,7 +63,7 @@ for idx in range(total_scans):
         looping_counters[divert_name] = {}
         looping_counters[divert_name]['instances_visitied'] = 1
         if divert_truth == 'True':
-            print('tote divert requested to: ', divert_name)
+            # print('tote divert requested to: ', divert_name)
             looping_counters[divert_name]['diverted'] = 1
 
             # Draw filled rectangles to display the systems divert TRUE Score
@@ -109,7 +110,7 @@ for idx in range(total_scans):
     else:
         looping_counters[divert_name]['instances_visitied'] += 1
         if divert_truth == 'True':
-            print('tote divert requested to: ', divert_name)
+            # print('tote divert requested to: ', divert_name)
 
             # this new updated value will now go inside the rectangle
 
@@ -158,7 +159,6 @@ for idx in range(total_scans):
     # if divert == false, circle color == red
 
     if divert_truth == 'False':
-
         img = cv2.circle(img,
                          system_coordinates[divert_name],
                          radius=CIRCLE_RAD_SMALL,
@@ -175,7 +175,7 @@ for idx in range(total_scans):
                          radius=CIRCLE_RAD_MEDIUM,
                          color=COLOR_GREEN,
                          thickness=-1)
-        if IM_SHOW ==1:
+        if IM_SHOW == 1:
             cv2.imshow("System Map", img)
         cv2.waitKey(WAIT_KEY_PARAM)
 
@@ -200,14 +200,14 @@ for idx in range(total_scans):
     time_counter += time_difference
     time_counter = float('{:.2f}'.format(time_counter))
 
-    if IM_SHOW ==1:
+    if IM_SHOW == 1:
         # # adding the text to the TITLE  - Trial and error method to get rectangle coordinates
         cv2.putText(img,
                     str(time_counter) + " minutes", (1150, 25),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, COLOR_YELLOW, 2)
 
         cv2.imshow("System Map", img)
-        
+
     cv2.waitKey(WAIT_KEY_PARAM)
 
 video_output.release()

@@ -1,6 +1,8 @@
-from sunflower_ott_params import *
-# from britton_jax_params import *
-# from washington_phx_params import *
+from site_params.sunflower_ott_params import *
+# from site_params.washington_phx_params import *
+# from site_params.britton_jax_params import *
+# from site_params.huron_lan_params import *
+
 from common_helper import *
 
 # reading the blank image
