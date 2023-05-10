@@ -79,9 +79,7 @@ for location_iterator in range(len(all_locations)):
 
     all_average_time_dic[all_locations[location_iterator]] = average_time_list
 
-
-
-    if len(average_time_list) != 0: 
+    if len(average_time_list) != 0:
 
         # Dynamically change y_lim for every instance. So we set y_lim as the highest time interval we see
         if max(average_time_list) > y_lim:
@@ -102,12 +100,13 @@ all_average_time_dic_keys = []
 for k, v in all_average_time_dic.items():
     all_average_time_dic_keys.append(k)
 
-print ('\n')
+print('\n')
 print(' ====== Overall Tote Loop Average time between totes at every point is : ',
       (sum(main_avg)/len(main_avg)), ' seconds  ====== ')
 print(' ====== Total Totes processed (repeated)  : ', total_totes, ' ====== ')
 # subplot properties
-print(' ====== Total Unique Totes processed : ', len(set(dataFrame["tote_id"].tolist())), ' ====== ')
+print(' ====== Total Unique Totes processed : ', len(
+    set(dataFrame["tote_id"].tolist())), ' ====== ')
 axis_rows = 3
 axis_columns = 6
 fig, axs = plt.subplots(axis_rows, axis_columns)
