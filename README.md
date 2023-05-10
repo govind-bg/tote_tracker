@@ -9,18 +9,22 @@
 ---------------------
 
 
-### Main functionalities in this repository:
+## Main functionalities in this repository:
 
 - Tracking a totes journey through the system
 - Tracking time between totes at any point
+
+### : Kibana Links for tote journey tracking
 
 [Link to the source data for Ottawa](https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-7d%2Fd,to:now))&_a=(columns:!(message,system_name),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22Divert%20decision%22%20%20and%20%22770000601205%22'),sort:!(!('@timestamp',desc))))
 
 [Link to the source data for Jacksonville](https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-7d%2Fd,to:now))&_a=(columns:!(message,system_name),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22Divert%20decision%22%20%20and%20%22770000601205%22'),sort:!(!('@timestamp',desc))))
 
-[Link to the source data for Tote Tracker](https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1h,to:now))&_a=(columns:!(message,tote_id,location_id),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22arrived%22%20'),sort:!(!('@timestamp',desc))))
-
 [Link to the source data for Lansing](https://huron-wkizhi51d83xb3j0y5yuuqtb7q5tpbus.kb.us-central1.gcp.cloud.es.io:9243/s/huron/app/discover#/?_g=(filters:!(),query:(language:kuery,query:''),refreshInterval:(pause:!t,value:0),time:(from:now-1h,to:now))&_a=(columns:!(message,system_name),filters:!(),index:'4c017890-ee19-11eb-aab0-1792ddeef6fc',interval:auto,query:(language:kuery,query:'%22Divert%20decision%22%20and%20%22D0106690%22'),sort:!(!('@timestamp',desc))))
+
+### : Kibana Links for tracking time between totes
+
+[Link to the source data for Tote Tracker](https://sunflower.kb.us-central1.gcp.cloud.es.io:9243/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1h,to:now))&_a=(columns:!(message,tote_id,location_id),filters:!(),index:ce572630-0f58-11ed-bd81-e7f3585b181b,interval:auto,query:(language:kuery,query:'%22arrived%22%20'),sort:!(!('@timestamp',desc))))
 
 # How to use this repo
 
