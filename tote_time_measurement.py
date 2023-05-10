@@ -113,7 +113,7 @@ fig, axs = plt.subplots(axis_rows, axis_columns)
 # set the super title for the matplotlib plot
 
 fig.suptitle('Time between Totes across all cells')
-fig.text(0.5, 0.04, 'number of totes', ha='center')
+fig.text(0.5, 0.04, 'tote number (idx)', ha='center')
 fig.text(0.04, 0.5, 'time between totes in seconds',
          va='center', rotation='vertical')
 # count to iterate through all dictionary keys
