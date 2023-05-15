@@ -38,20 +38,6 @@ for loc_idx in range(len(all_locations)):
     df_names[loc_idx] = dataFrame[dataFrame['location_id'].str.contains(
         all_locations[loc_idx])]
 
-
-def find_time(df):
-    time_stamps = df["@timestamp"].tolist()
-    time_stamps.reverse()
-    return time_stamps
-
-# print dataframes
-
-
-for loc_idx in range(len(all_locations)):
-    # printing the data frame for all locations
-    df_names[loc_idx] = dataFrame[dataFrame['location_id'].str.contains(
-        all_locations[loc_idx])]
-
 # fucntion to extract the timestamps and reverse it and return the reversed list
 
 
@@ -60,15 +46,16 @@ def find_time(df):
     time_stamps.reverse()
     return time_stamps
 
-
 all_average_time_dic = {}
 
 main_avg = []
 total_totes = 0
 y_lim = 0
+
 for location_iterator in range(len(all_locations)):
 
     time_stamp_list = find_time(df_names[location_iterator])
+
     # now doing the time delta calculation
 
     average_time_list = []
@@ -81,6 +68,19 @@ for location_iterator in range(len(all_locations)):
 
     if len(average_time_list) != 0:
 
+        # Calculate diff in time between seeing the tote first and last
+        time_stamp_prev = datetime.strptime(
+            time_stamp_list[0], "%b %d, %Y @ %H:%M:%S.%f")
+        time_stamp_current = datetime.strptime(
+            time_stamp_list[-1], "%b %d, %Y @ %H:%M:%S.%f")
+        time_delta = time_stamp_current - time_stamp_prev
+        # returns (minutes, seconds) tuple format
+        time_minutes = divmod(time_delta.total_seconds(), 60)
+        # this returns the time in minutes
+        cpm_time_minute_measurement = time_minutes[0] + (time_minutes[1] / 60)
+
+
+
         # Dynamically change y_lim for every instance. So we set y_lim as the highest time interval we see
         if max(average_time_list) > y_lim:
             y_lim = max(average_time_list)
@@ -88,13 +88,17 @@ for location_iterator in range(len(all_locations)):
         main_avg.append(average_time_seconds)
         print('Average time taken between totes at ',
               all_locations[location_iterator], ' is : ', average_time_seconds, ' seconds | Totes processed : ', len(average_time_list))
+        tote_per_minute = len(average_time_list)/cpm_time_minute_measurement
+        print('Totes per minute at {} : {} '.format(all_locations[location_iterator],tote_per_minute))
         # redoing it for every point, so setting iterator back to 0
         total_totes += len(average_time_list)
         # average_time_list = []
         # time_list_iterator = 0
+        print('\n')
     else:
         print('No totes went past ', all_locations[location_iterator])
         main_avg.append(0)
+        print('/n')
 
 all_average_time_dic_keys = []
 for k, v in all_average_time_dic.items():
